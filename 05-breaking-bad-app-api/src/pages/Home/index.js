@@ -33,8 +33,8 @@ function Home() {
         className="my-masonry-grid"
         columnClassName="my-masonry-grid_column"
       >
-        {characters.map((character) => (
-          <div key={character.char_id}>
+        {characters.map((character, index) => (
+          <div key={index}>
             <img
               alt={character.name}
               src={character.img}
