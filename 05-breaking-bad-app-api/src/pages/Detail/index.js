@@ -16,19 +16,52 @@ function Detail() {
   }, [char_id]);
 
   return (
-    <div>
-      {loading && <Loading />}
-      {char && (
-        <div>
-          <h1>{char.name}</h1>
-          <img src={char.img} alt="" style={{ width: "50%" }} />
-        </div>
-      )}
-      {char && (
-        <code>
-          <pre>{JSON.stringify(char, null, 2)}</pre>
-        </code>
-      )}
+    <div className="container p-2">
+      <div className="row">
+        {loading && <Loading />}
+        {char && (
+          <div>
+            <h1 className="text-center">{char.name}</h1>
+            <div className="text-center">
+              <img className="" src={char.img} alt={char.name} />
+            </div>
+          </div>
+        )}
+        {char && (
+          <div className="p-4">
+            <div className="accordion" id="accordionExample">
+              <div className="accordion-item">
+                <h2 className="accordion-header" id="headingTwo">
+                  <button
+                    className="accordion-button collapsed"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#collapseTwo"
+                    aria-expanded="false"
+                    aria-controls="collapseTwo"
+                    style={{ backgroundColor: "#29773E", color: "white" }}
+                  >
+                    Click for Details
+                  </button>
+                </h2>
+                <div
+                  id="collapseTwo"
+                  className="accordion-collapse collapse "
+                  aria-labelledby="headingTwo"
+                  data-bs-parent="#accordionExample"
+                >
+                  <div
+                    className="accordion-body text-light"
+                    style={{ backgroundColor: "#29773E" }}
+                  >
+                    <pre>{JSON.stringify(char, null, 2)}</pre>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

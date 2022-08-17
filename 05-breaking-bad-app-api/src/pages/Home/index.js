@@ -1,8 +1,5 @@
 import { useEffect } from "react";
 
-import "./styles.css";
-import Masonry from "react-masonry-css";
-
 import Loading from "../../components/Loading";
 import Error from "../../components/Error";
 
@@ -31,30 +28,44 @@ function Home() {
   }
 
   return (
-    <div className="bg-danger">
-      <Masonry
-        breakpointCols={4}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
-        {characters.map((character) => (
-          <div key={character.char_id}>
-            <Link to={`/char/${character.char_id}`}>
+    <div>
+      <h1 className="text-center">Characters</h1>
+      <div className="container">
+        <div className="row" style={{ justifyContent: "center" }}>
+          {characters.map((character) => (
+            <div
+              className="card border border-1 p-2 m-3 text-center"
+              style={{ width: "18rem", backgroundColor: "#369457" }}
+              key={character.char_id}
+            >
               <img
                 alt={character.name}
                 src={character.img}
                 className="character"
               />
-              <div className="char_name text-success">{character.name}</div>
-            </Link>
-          </div>
-        ))}
-      </Masonry>
+              <div className="card-body">
+                <h5 className="card-title">{character.name}</h5>
+                <p className="card-text">{character.nickname}</p>
+                <Link
+                  to={`/char/${character.char_id}`}
+                  className="btn"
+                  style={{ backgroundColor: "#29773E", color: "white" }}
+                >
+                  Click for Details
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
-      <div style={{ padding: "20px 0 40px 0", textAlign: "center" }}>
+      <div className="text-center p-3">
         {status === "loading" && <Loading />}
         {hasNextPage && status !== "loading" && (
-          <button onClick={() => dispatch(fetchCharacters(nextPage))}>
+          <button
+            onClick={() => dispatch(fetchCharacters(nextPage))}
+            className="btn btn-success text-center"
+          >
             Load more ({nextPage})
           </button>
         )}

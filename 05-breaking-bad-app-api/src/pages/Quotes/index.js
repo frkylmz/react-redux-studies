@@ -29,16 +29,18 @@ function Quotes() {
   }
 
   return (
-    <div style={{ padding: 10 }}>
-      <h1>Quotes</h1>
-      {status === "loading" && <Loading />}
+    <div className="container">
+      <div className="row">
+        <h1>Quotes</h1>
+        {status === "loading" && <Loading />}
 
-      {status === "succeeded" &&
-        data.map((item) => <Item key={item.quote_id} item={item} />)}
+        {status === "succeeded" &&
+          data.map((item) => <Item key={item.quote_id} item={item} />)}
 
-      {status === "succeeded" && (
-        <div className="quotes_info">{data.length} quotes</div>
-      )}
+        {status === "succeeded" && (
+          <div className="text-center p-3">{data.length} quotes.</div>
+        )}
+      </div>
     </div>
   );
 }
